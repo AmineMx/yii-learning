@@ -1,12 +1,28 @@
 <?php
 /* @var $this yii\web\View */
-?>
-<form method="post" action="<?= \yii\helpers\Url::toRoute( [ 'student/register' ] ) ?>">
-    <label>Nom :<input name="first_name"></label>
-    <label>Pre nom :
-        <input name="last_name">
-    </label>
-    <label>Age : <input name="age"></label>
-    <button type="submit">Send</button>
 
-</form>
+$form = \yii\widgets\ActiveForm::begin();
+?>
+
+
+    <div class="row">
+		<?php
+		echo \yii\helpers\Html::errorSummary( $model );
+		?>
+        <div class="col-md-6"><?php
+			echo $form->field( $model, 'firstname' );
+			?></div>
+        <div class="col-md-6">
+			<?php
+			echo $form->field( $model, 'lastname' );
+			?>
+        </div>
+    </div>
+<?php
+echo $form->field( $model, 'email' );
+echo $form->field( $model, 'password' );
+echo $form->field( $model, 'age' );
+?>
+<?php
+echo \yii\bootstrap\Html::submitButton( 'Soumettre', [ 'class' => 'btn btn-primary' ] );
+\yii\widgets\ActiveForm::end();

@@ -6,4 +6,7 @@
  * Time: 15:21
  *
  **/
-echo $name;
+?>
+<ul>
+    <li><strong>First name</strong><?= $model->firstname ?></li>
+</ul>

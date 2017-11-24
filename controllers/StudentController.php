@@ -2,20 +2,22 @@
 
 namespace app\controllers;
 
+use app\models\StudentForm;
+
 class StudentController extends \yii\web\Controller {
 	public $enableCsrfValidation = false;
 	public $defaultAction = 'register';
 
 	public function actionRegister() {
-		if ( isset( $_POST['first_name'] ) && $_POST['first_name'] != '' ) {
-			$firstname = $_POST['first_name'];
-
-			return $this->render( 'display', [
-				'name' => $firstname
-			] );
+		$model = new StudentForm();
+		if($model->load($_POST)){
+			if($model->validate()){
+				return $this->render('display', ['model'=>$model]);
+			}
 		}
-
-		return $this->render( 'register' );
+		return $this->render( 'register', [
+			'model' => $model
+		] );
 	}
 
 }
